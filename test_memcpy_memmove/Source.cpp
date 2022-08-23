@@ -6,24 +6,25 @@ int main() {
 
 	char names[]{ "Nick Adele Tom Kate" };
 	char adele[5];
-
+        
+	//memcpy() cannot overlap blocks of memory, thus the behavior is unpredictable
 	memcpy(adele, names + 5, sizeof(char) * 5);
 	for (int i{ 0 }; i < size(adele); i++) {
 		cout << adele[i];
 	}
 	cout << endl << "=============" << endl;
-	//wanna Nick Kate Tom Kate
+	
+	//want to have "Nick Kate Tom Kate"
+	//memmove() can overlap blocks of memory, more safe
 	memmove(names + 5, names + 14, sizeof(char) * 4);
 	for (int i{ 0 }; i < size(names); i++) {
 		cout << names[i];
 	}
 	cout << endl << endl;
 
-
-	//task from the class
+        //task from the class
 	char arr[12]{ "Hello World" };
 	char reverse[12];
-
 
 	memcpy(reverse, arr + 6, sizeof(char) * 5);
 	reverse[5] = ' ';
